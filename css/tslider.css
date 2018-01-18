@@ -1,0 +1,814 @@
+/*
+	- mSlider's main stylesheet
+	- mSlider v1.0
+	- Under licensed
+	- by Herinda
+	- 2015
+*/
+
+@font-face {
+	font-family: 'themify';
+	src:url('../fonts/themify.eot');
+	src:url('../fonts/themify.eot?#iefix-fvbane') format('embedded-opentype'),
+		url('../fonts/themify.woff') format('woff'),
+		url('../fonts/themify.ttf') format('truetype'),
+		url('../fonts/themify.svg#themify') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/*****************************************************************************************************************************/
+
+/* - overlay slider */
+
+/*****************************************************************************************************************************/
+
+#ts_o,
+#ts_o-wrapper,
+#ts_o_container{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#ts_o {
+	display: none;
+	cursor: pointer;
+	position: fixed;
+	z-index: 9000;
+	background-repeat: no-repeat;
+	background-position: 98% 2%;
+	background-size: 50px;
+	-webkit-transform: translate3d(0,0,0);
+	display: block;
+	-webkit-transition: background .5s ease;
+	   -moz-transition: background .5s ease;
+	    -ms-transition: background .5s ease;
+	     -o-transition: background .5s ease;
+	        transition: background .5s ease;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	     -o-user-select: none;
+	        user-select: none;
+}
+
+#ts_o:before,
+#ts_o_views:before,
+#ts_o_prev:before,
+#ts_o_next:before {
+    font-family: 'themify';
+    speak: none;
+    font-size: 300%;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#ts_o:before {
+	content: "\e646";
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+@media screen and (max-width: 480px) {
+
+	#ts_o:before,
+	#ts_o_views:before,
+	#ts_o_prev:before,
+	#ts_o_next:before {
+		font-size: 200%;
+	}
+
+	#ts_o_prev,
+	#ts_o_next,
+	#ts_o_views {
+		display: none;
+	}
+
+	.ts-wrapper {
+		padding: 20% 2% !important;
+	}
+
+}
+
+#ts_o.ts-t-light {
+	background-color: rgba(255, 255, 255, .85);
+}
+
+#ts_o.ts-t-dark {
+	background-color: rgba(0, 0, 0, .85);
+}
+
+#ts_o.ts-t-light.full-color {
+	background-color: #fff;
+}
+
+#ts_o.ts-t-dark.full-color {
+	background-color: #000;
+}
+
+#ts_o.ts-t-light h3,
+#ts_o.ts-t-light p {
+	color: #333 !important;
+}
+
+#ts_o.ts-t-dark h3,
+#ts_o.ts-t-dark p {
+	color: #fff !important;
+}
+
+#ts_o_container{
+	position: relative;
+	cursor: default;
+	overflow: hidden;
+}
+
+/* navigation */
+#ts_o_next {
+	left: 90%;
+}
+
+#ts_o_prev {
+	left: 0;
+}
+
+#ts_o_prev,
+#ts_o_next {
+	position: absolute;
+	top: 10%;
+	height: 80%;
+	width: 10%;
+	-webkit-transition: .5s ease;
+	   -moz-transition: .5s ease;
+	    -ms-transition: .5s ease;
+	        transition: .5s ease; 
+	cursor: pointer;
+}
+
+#ts_o_prev:before {
+	content: "\e65e";
+    left: 20px;
+}
+
+#ts_o_next:before {
+	content: "\e65d";
+    right: 20px;
+}
+
+#ts_o_prev:before,
+#ts_o_next:before {
+	position: absolute;
+    top: 50%;
+	-webkit-transform: translateY(-50%);
+	   -moz-transform: translateY(-50%);
+	    -ms-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+
+.ts-t-dark #ts_o_counter {
+	color: #fff;
+}
+
+#ts_o_next.no-more,
+#ts_o_prev.no-more,
+#ts_o_next.no-more:hover,
+#ts_o_prev.no-more:hover {
+	opacity: 0;
+}
+
+#ts_o_counter {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 7px;
+    font-size: 17px;
+}
+
+#ts_o_counter > div {
+	display: inline-block;}
+
+.nextCountSlide {
+	-webkit-transform: rotateX(90deg);
+	   -moz-transform: rotateX(90deg);
+	    -ms-transform: rotateX(90deg);
+	        transform: rotateX(90deg);
+}
+
+.prevCountSlide {
+	-webkit-transform: rotateX(-90deg);
+	   -moz-transform: rotateX(-90deg);
+	    -ms-transform: rotateX(-90deg);
+	        transform: rotateX(-90deg);
+}
+
+/* layer mode */
+
+#ts_o_views {
+	top: 20px;
+	left: 20px;
+	position: absolute;
+	cursor: pointer;
+}
+
+#ts_o_views:before {
+	content: "\e739";
+}
+
+#ts_o_views.active {
+	background: #333;
+}
+
+#ts_o_views.active:before {
+	content: "\e6e8";
+}
+
+.ts-o-box {
+	cursor: default;
+	margin: auto;
+	opacity: 1;  
+	-webkit-transform: none;
+	   -moz-transform: none;
+	    -ms-transform: none;
+	        transform: none;
+	-webkit-transition: -webkit-transform .5s ease, padding .5s ease;
+	   -moz-transition: -moz-transform .5s ease, padding .5s ease;
+	    -ms-transition: -ms-transform .5s ease, padding .5s ease;
+	        transition: transform .5s ease, padding .5s ease;
+}
+
+/* Thumbnails mode */
+
+.ts-o-box.ts-o-thumbnail {
+	-webkit-transform: scale(.2);
+	   -moz-transform: scale(.2);
+	    -ms-transform: scale(.2);
+	        transform: scale(.2);
+	-webkit-transition: -webkit-transform .5s ease, z-index .5s ease, opacity .3s ease-out;
+	   -moz-transition: -moz-transform .5s ease, z-index .5s ease, opacity .3s ease-out;
+	    -ms-transition: -ms-transform .5s ease, z-index .5s ease, opacity .3s ease-out;
+	        transition: transform .5s ease, z-index .5s ease, opacity .3s ease-out;
+	opacity: .5 !important;
+	z-index: 2000;    
+	cursor: pointer;
+}
+
+.ts-o-box.ts-o-thumbnail:hover {
+	opacity: 1 !important;
+	-webkit-transition: opacity .5s ease;
+	   -moz-transition: opacity .5s ease;
+	    -ms-transition: opacity .5s ease;
+	        transition: opacity .5s ease;
+}
+
+.mg-s.wrapper .ts-o-box.ts-o-thumbnail:hover {
+	overflow: auto;
+}
+
+.ts-o-box.ts-o-thumbnail {
+  	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0, transparent) , to(rgba(0, 0, 0, 0.2)));
+}
+
+.ts-o-box.selected-slide {
+	z-index: 2002;
+	opacity: 1 !important;
+	-webkit-transform: scale(.3);
+	   -moz-transform: scale(.3);
+	    -ms-transform: scale(.3);
+	        transform: scale(.3);	
+}
+
+.ts-o-box.neighbour-slide {
+	z-index: 2001;
+	opacity: .8 !important;
+	-webkit-transform: scale(.25);
+	   -moz-transform: scale(.25);
+	    -ms-transform: scale(.25);
+	        transform: scale(.25);	
+}
+
+/*****************************************************************************************************************************/
+/* - slider default classes */
+/*****************************************************************************************************************************/
+
+.ts-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.ts-main {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.ts-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 5% 10%;		
+	-webkit-transition: padding .3s ease;
+	   -moz-transition: padding .3s ease;
+	    -ms-transition: padding .3s ease;
+	        transition: padding .3s ease;
+}
+
+.ts-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.ts-box {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 100%;
+	height: 100%;	
+	/*display: table;		*/
+}
+
+.m-box {
+	overflow: hidden;
+}
+
+.ts-content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	/*display: table-cell !important;*/
+	/*vertical-align: middle;*/
+	/*padding: 0 10%;	*/
+}
+
+.ts-content > .ts-front,
+.ts-content > .ts-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.ts-content > .ts-front {
+	text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+    z-index: 2;
+}
+
+.ts-content > .ts-back {
+	display: table;
+    -webkit-transform: scale(3);
+       -moz-transform: scale(3);
+        -ms-transform: scale(3);
+            transform: scale(3);
+	z-index: 1;
+	opacity: 0;   
+}
+
+.ts-content > .ts-front,
+.ts-content > .ts-back {
+	-webkit-transition: .5s ease;
+	   -moz-transition: .5s ease;
+	    -ms-transition: .5s ease;
+	        transition: .5s ease;
+}
+
+.ts-content > .ts-back > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ts-content.active .ts-front {
+	opacity: 0;
+	-webkit-transform: scale(.5);
+	   -moz-transform: scale(.5);
+	    -ms-transform: scale(.5);
+	        transform: scale(.5);  
+}
+
+.ts-content.active .ts-back {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	   -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	        transform: scale(1); 
+}
+
+.ts-box.ts-o-normal> .ts-content {
+	opacity: 0;
+}
+
+.ts-box.ts-o-normal.active> .ts-content {
+	opacity: 1;
+}
+
+/*****************************************************************************************************************************/
+
+/* - Hover effects */
+
+/*****************************************************************************************************************************/
+
+.mg.ts-h-no .detail{
+	opacity: 0; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transition: none !important;
+	   -moz-transition: none !important;
+	    -ms-transition: none !important;
+	        transition: none !important;
+	background: none !important;
+	cursor: default !important;
+}
+
+.detail {
+	opacity: 0;
+	position: absolute;	
+}
+
+.ts-h-scaleIn .detail,
+.ts-h-scaleOut .detail,
+.ts-h-fade .detail,
+.ts-h-bounce .detail,
+.ts-h-tornado .detail,
+.ts-h-rotateIn .detail {
+	-webkit-transition: all .5s ease;
+	   -moz-transition: all .5s ease;
+	    -ms-transition: all .5s ease;
+	     -o-transition: all .5s ease;
+	        transition: all .5s ease;	
+	background-image: url(../img/themes/light/zoom.png);
+	background-position: center;
+	background-size: 20%;
+	background-repeat: no-repeat;
+	opacity: 0; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.mg-zt-dark .detail{
+	background-image: url(../img/themes/dark/zoom.png);
+}
+
+.ts-h-scaleIn .detail{
+	-webkit-transform: scale(.5);
+	   -moz-transform: scale(.5);
+	    -ms-transform: scale(.5);
+	     -o-transform: scale(.5);
+	        transform: scale(.5);
+}
+
+.ts-h-scaleOut .detail{
+	-webkit-transform: scale(1.5);
+	   -moz-transform: scale(1.5);
+	    -ms-transform: scale(1.5);
+	     -o-transform: scale(1.5);
+	        transform: scale(1.5);
+}
+
+.ts-h-scaleIn .detail *,
+.ts-h-scaleOut .detail *,
+.ts-h-fade .detail *,
+.ts-h-bounce .detail *,
+.ts-h-tornado .detail *,
+.ts-h-rotateIn .detail * {
+	opacity: 0;
+}
+
+.ts-h-scaleIn:hover .detail,
+.ts-h-scaleOut:hover .detail,
+.ts-h-fade:hover .detail {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	   -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	     -o-transform: scale(1);
+	        transform: scale(1);	
+}
+
+/*****************************************************************************************************************************/
+/* - bounce */
+/*****************************************************************************************************************************/
+
+.ts-h-bounce .detail {
+	opacity: 0;
+	top: -100%;
+}
+
+.ts-h-bounce:hover .detail{
+	top: 0;
+	opacity: 1;
+	-webkit-animation: bounce 1s 1 ease;
+	   -moz-animation: bounce 1s 1 ease;
+	    -ms-animation: bounce 1s 1 ease;
+	     -o-animation: bounce 1s 1 ease;
+	        animation: bounce 1s 1 ease;
+}
+
+/*****************************************************************************************************************************/
+/* - rotate in */
+/*****************************************************************************************************************************/
+
+.ts-h-rotateIn .detail {
+	opacity: 0;
+	-webkit-transform: translateY(-100%) scale(0) rotateX(180deg);
+       -moz-transform: translateY(-100%) scale(0) rotateX(180deg);
+        -ms-transform: translateY(-100%) scale(0) rotateX(180deg);
+         -o-transform: translateY(-100%) scale(0) rotateX(180deg);
+            transform: translateY(-100%) scale(0) rotateX(180deg);
+}
+
+.ts-h-rotateIn:hover .detail{
+	opacity: 1;
+	-webkit-transform: translateY(0) scale(1) rotateX(0deg);
+       -moz-transform: translateY(0) scale(1) rotateX(0deg);
+        -ms-transform: translateY(0) scale(1) rotateX(0deg);
+         -o-transform: translateY(0) scale(1) rotateX(0deg);
+            transform: translateY(0) scale(1) rotateX(0deg);  
+}
+
+/*****************************************************************************************************************************/
+/* - tornado */
+/*****************************************************************************************************************************/
+
+.ts-h-tornado .detail {
+	opacity: 1;
+	-webkit-transform: translateY(-100%) scale(0) rotateY(720deg);
+       -moz-transform: translateY(-100%) scale(0) rotateY(720deg);
+        -ms-transform: translateY(-100%) scale(0) rotateY(720deg);
+         -o-transform: translateY(-100%) scale(0) rotateY(720deg);
+            transform: translateY(-100%) scale(0) rotateY(720deg);
+}
+
+.ts-h-tornado:hover .detail{
+	opacity: 1;
+	-webkit-transform: translateY(0) scale(1) rotateY(0deg);
+       -moz-transform: translateY(0) scale(1) rotateY(0deg);
+        -ms-transform: translateY(0) scale(1) rotateY(0deg);
+         -o-transform: translateY(0) scale(1) rotateY(0deg);
+            transform: translateY(0) scale(1) rotateY(0deg);  
+}
+
+/*****************************************************************************************************************************/
+
+/* - Slide Effects */
+
+/*****************************************************************************************************************************/
+
+.ts-box.ts-o-normal.active.ts-e-scaleInBefore > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-scaleOutBefore > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-fadeOutBefore > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-fadeOutFadeIn > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateRightAfter > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateLeftAfter > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateRightBefore > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateLeftBefore > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateTopRightCorner > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateTopLeftCorner > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateBottomRightCorner > .ts-content,
+.ts-box.ts-o-normal.active.ts-e-rotateBottomLeftCorner > .ts-content {
+	-webkit-transform: scale(1) rotate(0deg);
+	   -moz-transform: scale(1) rotate(0deg);
+	    -ms-transform: scale(1) rotate(0deg);
+	     -o-transform: scale(1) rotate(0deg);
+	        transform: scale(1) rotate(0deg);
+}
+
+/*****************************************************************************************************************************/
+/* - Scale */
+/*****************************************************************************************************************************/
+
+.ts-box.ts-o-normal.ts-e-scaleInBefore > .ts-content {
+	-webkit-transition: -webkit-transform .4s ease, opacity .3s ease .2s;
+	   -moz-transition: -moz-transform .4s ease, opacity .3s ease .2s;
+	    -ms-transition: -ms-transform .4s ease, opacity .3s ease .2s;
+	     -o-transition: -o-transform .4s ease, opacity .3s ease .2s;
+	        transition: transform .4s ease, opacity .3s ease .2s;
+	-webkit-transform: scale(.1);
+	   -moz-transform: scale(.1);
+	    -ms-transform: scale(.1);
+	     -o-transform: scale(.1);
+	        transform: scale(.1);
+}
+
+.ts-box.ts-o-normal.ts-e-scaleOutBefore > .ts-content {
+	-webkit-transition: -webkit-transform .4s ease, opacity .2s ease;
+	   -moz-transition: -moz-transform .4s ease, opacity .2s ease;
+	    -ms-transition: -ms-transform .4s ease, opacity .2s ease;
+	     -o-transition: -o-transform .4s ease, opacity .2s ease;
+	        transition: transform .4s ease, opacity .2s ease;
+	-webkit-transform: scale(2);
+	   -moz-transform: scale(2);
+	    -ms-transform: scale(2);
+	     -o-transform: scale(2);
+	        transform: scale(2);
+}
+
+/*****************************************************************************************************************************/
+/* - Fade */
+/*****************************************************************************************************************************/
+
+.ts-box.ts-o-normal.ts-e-fadeOutBefore > .ts-content {
+	-webkit-transition: -webkit-transform .5s ease,  opacity 1s ease;
+	   -moz-transition: -moz-transform .5s ease,  opacity 1s ease;
+	    -ms-transition: -ms-transform .5s ease,  opacity 1s ease;
+	     -o-transition: -o-transform .5s ease,  opacity 1s ease;
+	        transition: transform .5s ease,  opacity 1s ease;
+}
+
+.ts-box.ts-o-normal.ts-e-fadeOutFadeIn > .ts-content {
+	-webkit-transition: -webkit-transform .2s ease,  opacity .5s ease-in;
+	   -moz-transition: -moz-transform .2s ease,  opacity .5s ease-in;
+	    -ms-transition: -ms-transform .2s ease,  opacity .5s ease-in;
+	     -o-transition: -o-transform .2s ease,  opacity .5s ease-in;
+	        transition: transform .2s ease,  opacity .5s ease-in;
+}
+
+.ts-box.ts-o-normal.ts-e-fadeOutFadeIn.active > .ts-content {
+	-webkit-transition: -webkit-transform .2s ease,  opacity .5s ease-in .5s;
+	   -moz-transition: -moz-transform .2s ease,  opacity .5s ease-in .5s;
+	    -ms-transition: -ms-transform .2s ease,  opacity .5s ease-in .5s;
+	     -o-transition: -o-transform .2s ease,  opacity .5s ease-in .5s;
+	        transition: transform .2s ease,  opacity .5s ease-in .5s;
+}
+
+/*****************************************************************************************************************************/
+/* - rotate Y */
+/*****************************************************************************************************************************/
+
+.ts-box.ts-o-normal.ts-e-rotateRightAfter > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateLeftAfter > .ts-content {
+	-webkit-transition: -webkit-transform .5s ease .6s,  opacity 1s ease;
+	   -moz-transition: -moz-transform .5s ease .6s,  opacity 1s ease;
+	    -ms-transition: -ms-transform .5s ease .6s,  opacity 1s ease;
+	     -o-transition: -o-transform .5s ease .6s,  opacity 1s ease;
+	        transition: transform .5s ease .6s,  opacity 1s ease;
+}
+
+.ts-box.ts-o-normal.ts-e-rotateRightBefore > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateLeftBefore > .ts-content {
+	-webkit-transition: -webkit-transform .5s ease,  opacity 1s ease;
+	   -moz-transition: -moz-transform .5s ease,  opacity 1s ease;
+	    -ms-transition: -ms-transform .5s ease,  opacity 1s ease;
+	     -o-transition: -o-transform .5s ease,  opacity 1s ease;
+	        transition: transform .5s ease,  opacity 1s ease;
+}
+
+.ts-box.ts-o-normal.ts-e-rotateRightAfter > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateRightBefore > .ts-content {
+	-webkit-transform: rotateY(180deg);
+	   -moz-transform: rotateY(180deg);
+	    -ms-transform: rotateY(180deg);
+	     -o-transform: rotateY(180deg);
+	        transform: rotateY(180deg);  
+}
+
+.ts-box.ts-o-normal.ts-e-rotateLeftAfter > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateLeftBefore > .ts-content {
+	-webkit-transform: rotateY(-180deg);
+	   -moz-transform: rotateY(-180deg);
+	    -ms-transform: rotateY(-180deg);
+	     -o-transform: rotateY(-180deg);
+	        transform: rotateY(-180deg);  
+}
+
+/*****************************************************************************************************************************/
+/* - rotate corner */
+/*****************************************************************************************************************************/
+
+.ts-box.ts-o-normal.ts-e-rotateTopRightCorner > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateTopLeftCorner > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateBottomRightCorner > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateBottomLeftCorner > .ts-content {
+	-webkit-transition: -webkit-transform .5s ease,  opacity .3s ease;
+	   -moz-transition: -moz-transform .5s ease,  opacity .3s ease;
+	    -ms-transition: -ms-transform .5s ease,  opacity .3s ease;
+	     -o-transition: -o-transform .5s ease,  opacity .3s ease;
+	        transition: transform .5s ease,  opacity .3s ease;
+}
+
+.ts-box.ts-o-normal.ts-e-rotateTopRightCorner.active > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateTopLeftCorner.active > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateBottomRightCorner.active > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateBottomLeftCorner.active > .ts-content {
+	-webkit-transition: -webkit-transform .5s ease .6s,  opacity .3s ease .6s;
+	   -moz-transition: -moz-transform .5s ease .6s,  opacity .3s ease .6s;
+	    -ms-transition: -ms-transform .5s ease .6s,  opacity .3s ease .6s;
+	     -o-transition: -o-transform .5s ease .6s,  opacity .3s ease .6s;
+	        transition: transform .5s ease .6s,  opacity .3s ease .6s;	
+}
+
+.ts-box.ts-o-normal.ts-e-rotateTopRightCorner > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateTopLeftCorner > .ts-content {
+	-webkit-transform: rotate(-180deg);
+	   -moz-transform: rotate(-180deg);
+	    -ms-transform: rotate(-180deg);
+	     -o-transform: rotate(-180deg);
+	        transform: rotate(-180deg); 	
+}
+
+.ts-box.ts-o-normal.ts-e-rotateBottomRightCorner > .ts-content,
+.ts-box.ts-o-normal.ts-e-rotateBottomLeftCorner > .ts-content {
+	-webkit-transform: rotate(180deg);
+	   -moz-transform: rotate(180deg);
+	    -ms-transform: rotate(180deg);
+	     -o-transform: rotate(180deg);
+	        transform: rotate(180deg); 	
+}
+
+.ts-box.ts-o-normal.ts-e-rotateTopRightCorner > .ts-content {
+	-webkit-transform-origin: 100% top;
+	   -moz-transform-origin: 100% top;
+	    -ms-transform-origin: 100% top;
+	     -o-transform-origin: 100% top;
+	        transform-origin: 100% top;
+}
+
+.ts-box.ts-o-normal.ts-e-rotateTopLeftCorner > .ts-content {
+	-webkit-transform-origin: 0 top;
+	   -moz-transform-origin: 0 top;
+	    -ms-transform-origin: 0 top;
+	     -o-transform-origin: 0 top;
+	        transform-origin: 0 top;	
+}
+
+.ts-box.ts-o-normal.ts-e-rotateBottomRightCorner > .ts-content {
+	-webkit-transform-origin: 100% bottom;
+	   -moz-transform-origin: 100% bottom;
+	    -ms-transform-origin: 100% bottom;
+	     -o-transform-origin: 100% bottom;
+	        transform-origin: 100% bottom;
+}
+
+.ts-box.ts-o-normal.ts-e-rotateBottomLeftCorner > .ts-content {
+	-webkit-transform-origin: 0 bottom;
+	   -moz-transform-origin: 0 bottom;
+	    -ms-transform-origin: 0 bottom;
+	     -o-transform-origin: 0 bottom;
+	        transform-origin: 0 bottom;
+}
+
+
+/*****************************************************************************************************************************/
+
+/* - helpers */
+
+/*****************************************************************************************************************************/
+
+.no-background-img {
+	background-image: none !important;
+}
+
+.no-transition,
+.no-transition * {
+	-webkit-transition: none !important;
+	   -moz-transition: none !important;
+	    -ms-transition: none !important;
+	     -o-transition: none !important;
+	        transition: none !important;
+}
+
+.transition,
+.transition * {
+	-webkit-transition: all .5s ease-in !important;
+	   -moz-transition: all .5s ease-in !important;
+	    -ms-transition: all .5s ease-in !important;
+	     -o-transition: all .5s ease-in !important;
+	        transition: all .5s ease-in !important;	
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.default-cursor {
+	cursor : default !important;
+}

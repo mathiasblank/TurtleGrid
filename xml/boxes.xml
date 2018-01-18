@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<boxes>
+	<box>
+		<content>
+			<img src="img/photos/2.jpg" alt=""/>
+		</content>
+		<caption>
+			<h3>slider</h3>
+			<p>description...</p>
+		</caption>
+		<type>slider</type>
+	</box>
+	<box>
+		<content>
+			<img src="img/photos/3.jpg" alt=""/>
+		</content>
+		<caption>
+			<h3>gallery</h3>
+		</caption>
+		<type>gallery</type>
+	</box>
+</boxes>
